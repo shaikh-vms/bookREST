@@ -14,8 +14,6 @@ public class BookServiceImpl implements BookService {
 	
 	BookDao dao = new BookDaoImpl();
 
-	
-
 	public Book getBookByName(String bookName) {
 		return dao.getBookByName(bookName);
 	}
