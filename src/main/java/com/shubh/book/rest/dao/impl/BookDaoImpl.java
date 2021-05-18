@@ -1,12 +1,19 @@
 package com.shubh.book.rest.dao.impl;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.shubh.book.rest.dao.BookDao;
 import com.shubh.book.rest.model.Book;
+import com.shubh.book.rest.util.db.DBConnect;
 
 public class BookDaoImpl  implements BookDao{
+	
+	private static String QUERY_GET_BY_ID = "select * from books where id=";
 
 	List<Book> list;
 	Book book;
@@ -23,8 +30,19 @@ public class BookDaoImpl  implements BookDao{
 		list.add(book);
 	}
 
-	public Book getBookById(int id) {
-		return list.get(id);
+	public Book getBookById(int id) throws SQLException {
+		Connection connection = DBConnect.getConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(QUERY_GET_BY_ID+id);
+		Book responseBook = null;
+		if(rs.next()) {
+			responseBook= new Book();
+			responseBook.setId(rs.getInt("id"));
+			responseBook.setName(rs.getString("title"));
+			responseBook.setAuthor(rs.getString("author"));
+			responseBook.setPrice(rs.getInt("price"));
+		}
+		return responseBook;
 	}
 
 	public Book getBookByName(String bookName) {

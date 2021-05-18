@@ -1,5 +1,6 @@
 package com.shubh.book.rest.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.shubh.book.rest.model.Book;
@@ -7,7 +8,7 @@ import com.shubh.book.rest.model.Book;
 
 public interface BookDao {
 
-	Book getBookById(int id);
+	Book getBookById(int id) throws SQLException;
 
 	Book getBookByName(String bookName);
 
