@@ -10,9 +10,9 @@ public interface BookDao {
 
 	Book getBookById(int id) throws SQLException;
 
-	Book getBookByName(String bookName);
+	List<Book> getBooksOfAuthor(String authorName) throws SQLException;
 
-	List<Book> getBooksOfAuthor(String authorName);
+	List<Book> getBooksInPriceRange(int min, int max) throws SQLException;
 
-	List<Book> getBooksInPriceRange(int min, int max);
+	Book createBook(Book book) throws SQLException;
 }

@@ -18,6 +18,10 @@ public class BookException extends Exception {
 	public BookException(String message) {
 		super(message);
 	}
+
+	public BookException(String notFoundInRange, int min, int max) {
+		super(notFoundInRange+" MIN="+min+" MAX= "+max);
+	}
 	
 
 }

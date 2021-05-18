@@ -8,8 +8,8 @@ import com.shubh.book.rest.model.Book;
 
 public interface BookService {
 	Book getBookById(int id) throws SQLException,BookException;
-	Book getBookByName(String bookName);
-	List<Book> getBooksOfAuthor(String authorName);
-	List<Book> getBooksInPriceRange(int min, int max);
+	List<Book> getBooksOfAuthor(String authorName) throws SQLException, BookException;
+	List<Book> getBooksInPriceRange(int min, int max) throws SQLException, BookException;
+	Book createBook(Book book) throws SQLException, BookException;
 }
 
